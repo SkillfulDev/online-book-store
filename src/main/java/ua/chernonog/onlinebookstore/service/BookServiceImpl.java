@@ -1,8 +1,8 @@
 package ua.chernonog.onlinebookstore.service;
 
+import java.util.List;
 import org.springframework.stereotype.Service;
 import ua.chernonog.onlinebookstore.entity.Book;
-import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
