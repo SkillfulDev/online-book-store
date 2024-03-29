@@ -1,10 +1,13 @@
 package ua.chernonog.onlinebookstore.service;
 
 import java.util.List;
-import ua.chernonog.onlinebookstore.entity.Book;
+import ua.chernonog.onlinebookstore.dto.request.CreateBookRequestDto;
+import ua.chernonog.onlinebookstore.dto.response.BookDto;
 
 public interface BookService {
-    Book save(Book book);
+    BookDto save(CreateBookRequestDto bookDto);
 
-    List<Book> findAll();
+    List<BookDto> findAll();
+
+    BookDto findBookById(Long id);
 }
