@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-column-deleted-for-soft-delete-table-books
+      author: chernonog
+      changes:
+        - addColumn:
+            tableName: books
+            columns:
+              - column:
+                  name: deleted
+                  type: bigint
+                  defaultValue: '0'
