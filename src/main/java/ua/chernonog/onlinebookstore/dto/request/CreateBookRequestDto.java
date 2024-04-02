@@ -1,12 +1,9 @@
 package ua.chernonog.onlinebookstore.dto.request;
 
 import java.math.BigDecimal;
-
-import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
-import lombok.NonNull;
 
 @Data
 public class CreateBookRequestDto {
