@@ -17,7 +17,7 @@ public class CreateBookRequestDto {
     @NotEmpty(message = "Author cannot be empty")
     private String author;
     @NotEmpty(message = "ISBN cannot be empty")
-    @Pattern(regexp = "^(97(8|9))?\\d{9}(\\d|X)$", message = "Invalid ISBN format")
+    @Pattern(regexp = "^(?:\\d{9}[\\dX]|97[89]\\d{10})$", message = "Invalid ISBN format")
     private String isbn;
     @NotNull(message = "Price cannot be null")
     @DecimalMin(value = "0.00", inclusive = false, message = "Price must be greater than 0")
