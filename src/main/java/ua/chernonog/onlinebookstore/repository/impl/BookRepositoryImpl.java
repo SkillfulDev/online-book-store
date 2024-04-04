@@ -8,6 +8,7 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ua.chernonog.onlinebookstore.entity.Book;
+import ua.chernonog.onlinebookstore.exception.EntityNotFoundException;
 import ua.chernonog.onlinebookstore.exception.EntitySaveException;
 import ua.chernonog.onlinebookstore.repository.BookRepository;
 
@@ -29,7 +30,7 @@ public class BookRepositoryImpl implements BookRepository {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw new EntitySaveException("Can`t save book " + book + " to DB");
+            throw new EntitySaveException("Can`t save book " + book + " to DB", ex);
         }
     }
 
@@ -46,6 +47,8 @@ public class BookRepositoryImpl implements BookRepository {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             Book book = entityManager.find(Book.class, id);
             return Optional.ofNullable(book);
+        } catch (RuntimeException ex) {
+            throw new EntityNotFoundException("Can`t find book by id " + id + " in DB", ex);
         }
     }
 }
