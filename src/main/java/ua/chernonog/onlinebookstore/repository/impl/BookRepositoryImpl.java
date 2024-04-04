@@ -39,6 +39,8 @@ public class BookRepositoryImpl implements BookRepository {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             return entityManager.createQuery("SELECT b FROM Book b", Book.class)
                     .getResultList();
+        } catch (RuntimeException ex) {
+            throw new EntityNotFoundException("Can`t find books in DB", ex);
         }
     }
 
