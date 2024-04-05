@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.chernonog.onlinebookstore.dto.request.BookSearchParametersDto;
 import ua.chernonog.onlinebookstore.dto.request.CreateBookRequestDto;
 import ua.chernonog.onlinebookstore.dto.response.BookDto;
 import ua.chernonog.onlinebookstore.service.BookService;
@@ -45,10 +44,5 @@ public class BookController {
     @PutMapping("/{id}")
     public BookDto update(@PathVariable Long id, @RequestBody CreateBookRequestDto requestDto) {
         return bookService.updateById(id, requestDto);
-    }
-
-    @GetMapping("/search")
-    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
-        return bookService.search(searchParameters);
     }
 }

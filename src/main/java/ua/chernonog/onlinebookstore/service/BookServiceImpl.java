@@ -3,23 +3,19 @@ package ua.chernonog.onlinebookstore.service;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import ua.chernonog.onlinebookstore.dto.request.BookSearchParametersDto;
 import ua.chernonog.onlinebookstore.dto.request.CreateBookRequestDto;
 import ua.chernonog.onlinebookstore.dto.response.BookDto;
 import ua.chernonog.onlinebookstore.entity.Book;
 import ua.chernonog.onlinebookstore.exception.EntityNotFoundException;
 import ua.chernonog.onlinebookstore.mapper.BookMapper;
-import ua.chernonog.onlinebookstore.repository.SpecificationBuilder;
-import ua.chernonog.onlinebookstore.repository.book.BookRepository;
+import ua.chernonog.onlinebookstore.repository.BookRepository;
 
 @Service
 @RequiredArgsConstructor
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
-    private final SpecificationBuilder<Book> specificationBuilder;
 
     @Override
     public BookDto save(CreateBookRequestDto bookDto) {
@@ -52,14 +48,6 @@ public class BookServiceImpl implements BookService {
                 .map(existingBook -> updateBookFields(existingBook, requestDto))
                 .orElseThrow(() -> new EntityNotFoundException("Can't update book with id " + id));
         return bookMapper.toDto(bookRepository.save(book));
-    }
-
-    @Override
-    public List<BookDto> search(BookSearchParametersDto searchParameters) {
-        Specification<Book> bookSpecification = specificationBuilder.build(searchParameters);
-        return bookRepository.findAll(bookSpecification).stream()
-                .map(bookMapper::toDto)
-                .toList();
     }
 
     private Book updateBookFields(Book book, CreateBookRequestDto requestDto) {
