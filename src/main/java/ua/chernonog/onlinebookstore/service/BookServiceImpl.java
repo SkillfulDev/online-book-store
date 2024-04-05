@@ -42,7 +42,6 @@ public class BookServiceImpl implements BookService {
         bookRepository.deleteById(id);
     }
 
-
     @Override
     public BookDto updateById(Long id, CreateBookRequestDto requestDto) {
         Book book = bookRepository.findById(id)
