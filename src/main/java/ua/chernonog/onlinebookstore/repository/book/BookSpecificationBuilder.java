@@ -7,6 +7,8 @@ import ua.chernonog.onlinebookstore.dto.request.BookSearchParametersDto;
 import ua.chernonog.onlinebookstore.entity.Book;
 import ua.chernonog.onlinebookstore.repository.SpecificationBuilder;
 import ua.chernonog.onlinebookstore.repository.SpecificationProviderManager;
+import ua.chernonog.onlinebookstore.util.BookConstants;
+import ua.chernonog.onlinebookstore.util.BookUtils;
 
 @Component
 @RequiredArgsConstructor
@@ -16,18 +18,22 @@ public class BookSpecificationBuilder implements SpecificationBuilder<Book> {
     @Override
     public Specification<Book> build(BookSearchParametersDto bookSearchParametersDto) {
         Specification<Book> spec = Specification.where(null);
-        if (bookSearchParametersDto.getAuthors() != null
-                && bookSearchParametersDto.getAuthors().length > 0) {
-            spec = spec.and(bookSpecificationProviderManager
-                    .getSpecificationProvider("author")
-                    .getSpecification(bookSearchParametersDto.getAuthors()));
-        }
-        if (bookSearchParametersDto.getTitles() != null
-                && bookSearchParametersDto.getTitles().length > 0) {
-            spec = spec.and(bookSpecificationProviderManager
-                    .getSpecificationProvider("title")
-                    .getSpecification(bookSearchParametersDto.getTitles()));
-        }
+        spec = buildSpecification(spec,
+                bookSearchParametersDto.getAuthors(), BookConstants.AUTHOR);
+        spec = buildSpecification(spec,
+                bookSearchParametersDto.getTitles(), BookConstants.TITLE);
         return spec;
+    }
+
+    private Specification<Book> buildSpecification(
+            Specification<Book> spec,
+            String[] parameters, String key
+    ) {
+        if (BookUtils.isNullOrEmpty(parameters)) {
+            return spec;
+        }
+        return spec.and(bookSpecificationProviderManager
+                .getSpecificationProvider(key)
+                .getSpecification(parameters));
     }
 }
