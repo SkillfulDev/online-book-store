@@ -4,4 +4,8 @@ public class EntitySaveException extends RuntimeException {
     public EntitySaveException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    public EntitySaveException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }
