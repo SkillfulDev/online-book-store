@@ -3,10 +3,10 @@ package ua.chernonog.onlinebookstore.dto.request;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import lombok.Data;
+import org.hibernate.validator.constraints.ISBN;
 import org.hibernate.validator.constraints.URL;
 
 @Data
@@ -16,8 +16,8 @@ public class CreateBookRequestDto {
     private String title;
     @NotEmpty(message = "Author cannot be empty")
     private String author;
+    @ISBN(message = "Invalid ISBN format")
     @NotEmpty(message = "ISBN cannot be empty")
-    @Pattern(regexp = "(?:978|979)?\\d{9}[\\dX]", message = "Invalid ISBN format")
     private String isbn;
     @NotNull(message = "Price cannot be null")
     @DecimalMin(value = "0.00", inclusive = false, message = "Price must be greater than 0")
