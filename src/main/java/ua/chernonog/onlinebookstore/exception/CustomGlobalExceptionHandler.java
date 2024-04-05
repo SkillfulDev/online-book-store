@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -43,20 +44,22 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
     public ResponseEntity<Object> handleSqlIntegrityConstraintViolationException(
             SQLIntegrityConstraintViolationException e) {
-        return getStandartTemplateOfResponseEntity(e);
+        return getStandartTemplateOfResponseEntity(e, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException e) {
-        return getStandartTemplateOfResponseEntity(e);
+        return getStandartTemplateOfResponseEntity(e, HttpStatus.NOT_FOUND);
     }
 
     private ResponseEntity<Object> getStandartTemplateOfResponseEntity(
-            Throwable e) {
+            Throwable e,
+            HttpStatus httpStatus) {
         body.put(TIMESTAMP, LocalDateTime.now());
-        body.put(STATUS, HttpStatus.BAD_REQUEST);
+        body.put(STATUS, httpStatus);
         body.put(ERRORS, e.getMessage());
         return new ResponseEntity<>(
-                body, HttpStatus.CONFLICT);
+                body, httpStatus);
     }
 }
