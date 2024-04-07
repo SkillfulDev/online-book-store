@@ -4,18 +4,18 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import ua.chernonog.onlinebookstore.dto.request.BookSearchParametersDto;
 import ua.chernonog.onlinebookstore.dto.request.CreateBookRequestDto;
-import ua.chernonog.onlinebookstore.dto.response.BookDto;
+import ua.chernonog.onlinebookstore.dto.response.BookResponseDto;
 
 public interface BookService {
-    BookDto save(CreateBookRequestDto bookDto);
+    BookResponseDto save(CreateBookRequestDto bookDto);
 
-    List<BookDto> findAll(Pageable pageable);
+    List<BookResponseDto> findAll(Pageable pageable);
 
-    BookDto findBookById(Long id);
+    BookResponseDto findBookById(Long id);
 
     void deleteById(Long id);
 
-    BookDto updateById(Long id, CreateBookRequestDto requestDto);
+    BookResponseDto updateById(Long id, CreateBookRequestDto requestDto);
 
-    List<BookDto> search(BookSearchParametersDto searchParameters, Pageable pageable);
+    List<BookResponseDto> search(BookSearchParametersDto searchParameters, Pageable pageable);
 }

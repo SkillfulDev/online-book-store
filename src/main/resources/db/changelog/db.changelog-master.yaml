@@ -9,3 +9,5 @@ databaseChangeLog:
       file: db/changelog/changes/04-add-column-deleted-for-soft-delete-table-books.yaml
   - include:
       file: db/changelog/changes/05-change-deleted-type-from-table-books.yaml
+  - include:
+      file: db/changelog/changes/06-create-users-table.yaml

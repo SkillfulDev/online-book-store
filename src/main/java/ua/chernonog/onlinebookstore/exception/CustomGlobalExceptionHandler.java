@@ -51,6 +51,11 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         return getStandartTemplateOfResponseEntity(e);
     }
 
+    @ExceptionHandler(RegistrationException.class)
+    private ResponseEntity<Object> handleRegistrationException(RegistrationException e) {
+        return getStandartTemplateOfResponseEntity(e);
+    }
+
     private ResponseEntity<Object> getStandartTemplateOfResponseEntity(
             Throwable e) {
         body.put(TIMESTAMP, LocalDateTime.now());
