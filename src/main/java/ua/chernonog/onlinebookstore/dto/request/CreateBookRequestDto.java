@@ -1,7 +1,7 @@
 package ua.chernonog.onlinebookstore.dto.request;
 
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
@@ -12,17 +12,17 @@ import org.hibernate.validator.constraints.URL;
 @Data
 public class CreateBookRequestDto {
     private Long id;
-    @NotEmpty(message = "Title cannot be empty")
+    @NotBlank(message = "Title cannot be empty")
     private String title;
-    @NotEmpty(message = "Author cannot be empty")
+    @NotBlank(message = "Author cannot be empty")
     private String author;
     @ISBN(message = "Invalid ISBN format")
-    @NotEmpty(message = "ISBN cannot be empty")
+    @NotBlank(message = "ISBN cannot be empty")
     private String isbn;
     @NotNull(message = "Price cannot be null")
     @DecimalMin(value = "0.00", inclusive = false, message = "Price must be greater than 0")
     private BigDecimal price;
-    @NotEmpty
+    @NotBlank
     @Size(max = 100, message = "Description length must be less than 100 characters")
     private String description;
     @URL(message = "Cover image must be a valid URL")
