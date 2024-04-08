@@ -15,6 +15,6 @@ public class TitleSpecificationProvider implements SpecificationProvider<Book> {
     }
 
     public Specification<Book> getSpecification(String[] params) {
-        return BookUtils.getBookSpecification(params);
+        return BookUtils.getBookSpecification(params,BookConstants.TITLE);
     }
 }

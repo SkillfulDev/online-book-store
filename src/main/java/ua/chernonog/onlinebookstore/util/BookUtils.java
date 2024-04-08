@@ -9,9 +9,9 @@ public class BookUtils {
         return array == null || array.length == 0;
     }
 
-    public static Specification<Book> getBookSpecification(String[] params) {
+    public static Specification<Book> getBookSpecification(String[] params,String field) {
         return (root, query, criteriaBuilder) ->
-                root.get(BookConstants.AUTHOR)
+                root.get(field)
                         .in(Arrays.stream(params).toArray());
     }
 }

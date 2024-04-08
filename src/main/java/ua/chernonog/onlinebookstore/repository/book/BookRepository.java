@@ -8,5 +8,5 @@ import ua.chernonog.onlinebookstore.entity.Book;
 
 public interface BookRepository extends JpaRepository<Book, Long>,
         JpaSpecificationExecutor<Book> {
-    Page<Book> findAll(Pageable pageable);
+//    Page<Book> findAll(Pageable pageable);
 }
