@@ -53,6 +53,11 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         return getStandartTemplateOfResponseEntity(e, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(RegistrationException.class)
+    private ResponseEntity<Object> handleRegistrationException(RegistrationException e) {
+        return getStandartTemplateOfResponseEntity(e, HttpStatus.BAD_REQUEST);
+    }
+
     private ResponseEntity<Object> getStandartTemplateOfResponseEntity(
             Throwable e,
             HttpStatus httpStatus) {

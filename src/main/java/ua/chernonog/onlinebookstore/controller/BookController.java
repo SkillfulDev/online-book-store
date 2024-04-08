@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ua.chernonog.onlinebookstore.dto.request.BookSearchParametersDto;
 import ua.chernonog.onlinebookstore.dto.request.CreateBookRequestDto;
-import ua.chernonog.onlinebookstore.dto.response.BookDto;
+import ua.chernonog.onlinebookstore.dto.response.BookResponseDto;
 import ua.chernonog.onlinebookstore.service.BookService;
 
 @RestController
@@ -28,19 +28,19 @@ public class BookController {
 
     @GetMapping
     @Operation(summary = "Get all books", description = "Get all books")
-    public List<BookDto> getAll(Pageable pageable) {
+    public List<BookResponseDto> getAll(Pageable pageable) {
         return bookService.findAll(pageable);
     }
 
     @PostMapping
     @Operation(summary = "Create a new book", description = "Create a new book")
-    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookDto) {
+    public BookResponseDto createBook(@RequestBody @Valid CreateBookRequestDto bookDto) {
         return bookService.save(bookDto);
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Get a book by Id", description = "Get a book by Id")
-    public BookDto getBookById(@PathVariable Long id) {
+    public BookResponseDto getBookById(@PathVariable Long id) {
         return bookService.findBookById(id);
     }
 
@@ -53,14 +53,17 @@ public class BookController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Update a book by Id", description = "Update a book by Id")
-    public BookDto update(@PathVariable Long id,
-                          @RequestBody @Valid CreateBookRequestDto requestDto) {
+    public BookResponseDto update(@PathVariable Long id,
+                                  @RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.updateById(id, requestDto);
     }
 
     @GetMapping("/search")
     @Operation(summary = "Search books by params", description = "Search books by params")
-    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters, Pageable pageable) {
+    public List<BookResponseDto> searchBooks(
+            BookSearchParametersDto searchParameters,
+            Pageable pageable
+    ) {
         return bookService.search(searchParameters, pageable);
     }
 }
