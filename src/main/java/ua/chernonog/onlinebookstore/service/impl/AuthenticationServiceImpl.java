@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ua.chernonog.onlinebookstore.dto.request.UserRegistrationRequestDto;
 import ua.chernonog.onlinebookstore.dto.response.UserResponseDto;
 import ua.chernonog.onlinebookstore.entity.User;
+import ua.chernonog.onlinebookstore.exception.RegistrationException;
 import ua.chernonog.onlinebookstore.mapper.UserMapper;
 import ua.chernonog.onlinebookstore.repository.user.UserRepository;
 import ua.chernonog.onlinebookstore.service.AuthenticationService;
@@ -16,7 +17,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserMapper userMapper;
 
     @Override
-    public UserResponseDto register(UserRegistrationRequestDto requestDto) {
+    public UserResponseDto register(UserRegistrationRequestDto requestDto) throws RegistrationException {
+        if (userRepository.findByEmail(requestDto.getEmail())) {
+            throw new RegistrationException("User with email " + requestDto.getEmail()
+                    + " has already exist ");
+        }
         User user = userMapper.toModel(requestDto);
         return userMapper.toDto(userRepository.save(user));
     }

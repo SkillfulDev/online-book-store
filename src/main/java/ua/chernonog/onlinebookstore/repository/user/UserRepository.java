@@ -5,4 +5,5 @@ import ua.chernonog.onlinebookstore.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    boolean findByEmail(String email);
 }
