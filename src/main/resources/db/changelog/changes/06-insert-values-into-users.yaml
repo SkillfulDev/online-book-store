@@ -1,0 +1,167 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-values-into-users
+      author: chernonog
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: "david.chavez@yahoo.com"
+              - column:
+                  name: password
+                  value: "$2a$10$LNMpGYm2dLlLz1L3ZLo/Z.L09d8ffl6xshKNF67wFImxnGzE4lLKO"
+              - column:
+                  name: first_name
+                  value: "David"
+              - column:
+                  name: last_name
+                  value: "Chavez"
+              - column:
+                  name: shipping_address
+                  value: "690 Charles Meadows Apt. 707, Olsonside, South Carolina, 47802, Finland"
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: "crystal.fernandez@hotmail.com"
+              - column:
+                  name: password
+                  value: "$2a$10$SGqnpBjFQxgo69K067PDeuutWwQoCwmIyuUux/vemjFhK8DpsOkJC"
+              - column:
+                  name: first_name
+                  value: "Crystal"
+              - column:
+                  name: last_name
+                  value: "Fernandez"
+              - column:
+                  name: shipping_address
+                  value: "13466 Mendoza Throughway Suite 165, South Robert, Vermont, 41021, Grenada"
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: "logan.guzman@gmail.com"
+              - column:
+                  name: password
+                  value: "$2a$10$LgipzUYxE2zMwBscUqNUYOIqW8kb8K5ajdRJnZ6CEdyO0yDvCqCNW"
+              - column:
+                  name: first_name
+                  value: "Logan"
+              - column:
+                  name: last_name
+                  value: "Guzman"
+              - column:
+                  name: shipping_address
+                  value: "68351 Harris Square Apt. 899, Kimberlyport, Massachusetts, 49454, Angola"
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: "elizabeth.hinton@gmail.com"
+              - column:
+                  name: password
+                  value: "$2a$10$B.m659mUUAI/uwhk/uzeG.qulgksLoq2BoSI6hc8qoIO4u.Y69tcy"
+              - column:
+                  name: first_name
+                  value: "Elizabeth"
+              - column:
+                  name: last_name
+                  value: "Hinton"
+              - column:
+                  name: shipping_address
+                  value: "9679 Mcneil Meadows Apt. 265, New Bradleyville, Maine, 92857, Egypt"
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: "keith.estrada@yahoo.com"
+              - column:
+                  name: password
+                  value: "$2a$10$VQbyoehwjKP7J/iIsde4nujDB1Rpa1SOxPAimrXXhAdvQzkyAuIuy"
+              - column:
+                  name: first_name
+                  value: "Keith"
+              - column:
+                  name: last_name
+                  value: "Estrada"
+              - column:
+                  name: shipping_address
+                  value: "499 Lowe Mission Apt. 881, Port Adam, Missouri, 67808, Nigeria"
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: "admin@yahoo.com"
+              - column:
+                  name: password
+                  value: "$2a$10$g2tG4BrwxVCSpUANq9m6ZuB9y88/j5g8dN9gEtsXcl6RlsgO1YNDa"
+              - column:
+                  name: first_name
+                  value: "Jennifer"
+              - column:
+                  name: last_name
+                  value: "Lawrence"
+              - column:
+                  name: shipping_address
+                  value: "92089 Justin Glen Suite 268, East Dorismouth, Texas, 65789, Benin"
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'david.chavez@yahoo.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE name = 'USER')
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'crystal.fernandez@hotmail.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE name = 'USER')
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'logan.guzman@gmail.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE name = 'USER')
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'elizabeth.hinton@gmail.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE name = 'USER')
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'keith.estrada@yahoo.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE name = 'USER')
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'admin@yahoo.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE name = 'ADMIN')

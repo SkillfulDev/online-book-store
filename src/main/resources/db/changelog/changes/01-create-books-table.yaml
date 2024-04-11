@@ -31,12 +31,16 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: price
-                  type: bigint
+                  type: decimal(38,2)
                   constraints:
                     nullable: false
               - column:
                   name: description
                   type: varchar(255)
               - column:
-                  name: coverImage
+                  name: cover_image
                   type: varchar(255)
+              - column:
+                  name: deleted
+                  type: bit
+                  defaultValue: '0'

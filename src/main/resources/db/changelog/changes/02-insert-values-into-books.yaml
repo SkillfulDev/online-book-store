@@ -1,0 +1,245 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-values-into-books
+      author: chernonog
+      changes:
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: title
+                  value: "Integrated actuating hardware"
+              - column:
+                  name: author
+                  value: "Kevin Cole"
+              - column:
+                  name: isbn
+                  value: "978-423-623-956-4"
+              - column:
+                  name: price
+                  valueNumeric: 16.3
+              - column:
+                  name: description
+                  value: "Its call blood sign teach down window. Society recent along professional enjoy central. Tell economic assume impact left mouth fill. Yes chance level person. Step beyond goal spend soldier film."
+              - column:
+                  name: cover_image
+                  value: "https://www.lorempixel.com/500/650"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 2
+              - column:
+                  name: title
+                  value: "Integrated well-modulated archive"
+              - column:
+                  name: author
+                  value: "Margaret Delacruz"
+              - column:
+                  name: isbn
+                  value: "978-773-628-823-2"
+              - column:
+                  name: price
+                  valueNumeric: 34.95
+              - column:
+                  name: description
+                  value: "Home approach whom green special throughout rest. Thank what manager prevent. Player who note notice."
+              - column:
+                  name: cover_image
+                  value: "https://dummyimage.com/500x650"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 3
+              - column:
+                  name: title
+                  value: "Managed client-driven toolset"
+              - column:
+                  name: author
+                  value: "Sarah Alvarado"
+              - column:
+                  name: isbn
+                  value: "978-167-555-544-3"
+              - column:
+                  name: price
+                  valueNumeric: 46.96
+              - column:
+                  name: description
+                  value: "Human certain concern find turn. Kid better decade those record prevent. Phone continue member consumer suddenly create inside contain. Group analysis owner boy scientist debate third."
+              - column:
+                  name: cover_image
+                  value: "https://placeimg.com/500/650/any"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 4
+              - column:
+                  name: title
+                  value: "Innovative optimal groupware"
+              - column:
+                  name: author
+                  value: "Erik Bell"
+              - column:
+                  name: isbn
+                  value: "978-649-951-183-8"
+              - column:
+                  name: price
+                  valueNumeric: 22.66
+              - column:
+                  name: description
+                  value: "Difference address someone sense. Hand police discuss successful financial. Commercial wall whether if between. Data thought consumer fall man part everyone. Prove shoulder save. Most room grow home."
+              - column:
+                  name: cover_image
+                  value: "https://placeimg.com/500/650/any"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 5
+              - column:
+                  name: title
+                  value: "Universal even-keeled circuit"
+              - column:
+                  name: author
+                  value: "Timothy Estrada"
+              - column:
+                  name: isbn
+                  value: "978-700-980-732-8"
+              - column:
+                  name: price
+                  valueNumeric: 15.54
+              - column:
+                  name: description
+                  value: "Law support can management account smile. Safe likely week task PM attack. Coach make civil like nothing."
+              - column:
+                  name: cover_image
+                  value: "https://placeimg.com/500/650/any"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 6
+              - column:
+                  name: title
+                  value: "Cross-group value-added hierarchy"
+              - column:
+                  name: author
+                  value: "Sarah Jones"
+              - column:
+                  name: isbn
+                  value: "978-855-499-208-8"
+              - column:
+                  name: price
+                  valueNumeric: 41.89
+              - column:
+                  name: description
+                  value: "Husband quality consider company. Others note include kind discussion compare. Once heavy account why listen add. Wear authority contain may improve organization place."
+              - column:
+                  name: cover_image
+                  value: "https://placeimg.com/500/650/any"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 7
+              - column:
+                  name: title
+                  value: "Business-focused logistical orchestration"
+              - column:
+                  name: author
+                  value: "Luis Peterson"
+              - column:
+                  name: isbn
+                  value: "978-916-259-304-5"
+              - column:
+                  name: price
+                  valueNumeric: 13.33
+              - column:
+                  name: description
+                  value: "Evening these whatever product. Forget tell charge adult much consumer. Eight government very night compare partner building nation. Six traditional carry."
+              - column:
+                  name: cover_image
+                  value: "https://placeimg.com/500/650/any"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 8
+              - column:
+                  name: title
+                  value: "Decentralized web-enabled pricing structure"
+              - column:
+                  name: author
+                  value: "Nicholas Maldonado"
+              - column:
+                  name: isbn
+                  value: "978-411-777-221-1"
+              - column:
+                  name: price
+                  valueNumeric: 22.6
+              - column:
+                  name: description
+                  value: "Reason seek station unit way. Pull hospital within. Record one could them civil debate travel. According wrong actually idea apply give walk suddenly. Return tell upon serve car."
+              - column:
+                  name: cover_image
+                  value: "https://placekitten.com/500/650"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 9
+              - column:
+                  name: title
+                  value: "User-friendly stable neural-net"
+              - column:
+                  name: author
+                  value: "Ashley Ball"
+              - column:
+                  name: isbn
+                  value: "978-970-432-764-6"
+              - column:
+                  name: price
+                  valueNumeric: 12.95
+              - column:
+                  name: description
+                  value: "Word heart senior likely include same. Food thing great nice of language. Probably help should soon."
+              - column:
+                  name: cover_image
+                  value: "https://www.lorempixel.com/500/650"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 10
+              - column:
+                  name: title
+                  value: "Operative bifurcated interface"
+              - column:
+                  name: author
+                  value: "Jesse Bennett"
+              - column:
+                  name: isbn
+                  value: "978-455-447-824-8"
+              - column:
+                  name: price
+                  valueNumeric: 11.03
+              - column:
+                  name: description
+                  value: "Have bring central impact president trip. Our add read or as billion. Go be wonder position. Discuss guess part peace. Note record tell two by within loss. Seek place story avoid kitchen."
+              - column:
+                  name: cover_image
+                  value: "https://placeimg.com/500/650/any"

@@ -1,9 +1,0 @@
-databaseChangeLog:
-  - changeSet:
-      id: change-price-type-from-table-books
-      author: chernonog
-      changes:
-        - modifyDataType:
-            tableName: books
-            columnName: price
-            newDataType: decimal(38,2)
