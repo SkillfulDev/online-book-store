@@ -7,9 +7,6 @@ databaseChangeLog:
             tableName: books
             columns:
               - column:
-                  name: id
-                  valueNumeric: 1
-              - column:
                   name: title
                   value: "Integrated actuating hardware"
               - column:
@@ -30,9 +27,6 @@ databaseChangeLog:
         - insert:
             tableName: books
             columns:
-              - column:
-                  name: id
-                  valueNumeric: 2
               - column:
                   name: title
                   value: "Integrated well-modulated archive"
@@ -55,9 +49,6 @@ databaseChangeLog:
             tableName: books
             columns:
               - column:
-                  name: id
-                  valueNumeric: 3
-              - column:
                   name: title
                   value: "Managed client-driven toolset"
               - column:
@@ -78,9 +69,6 @@ databaseChangeLog:
         - insert:
             tableName: books
             columns:
-              - column:
-                  name: id
-                  valueNumeric: 4
               - column:
                   name: title
                   value: "Innovative optimal groupware"
@@ -103,9 +91,6 @@ databaseChangeLog:
             tableName: books
             columns:
               - column:
-                  name: id
-                  valueNumeric: 5
-              - column:
                   name: title
                   value: "Universal even-keeled circuit"
               - column:
@@ -126,9 +111,6 @@ databaseChangeLog:
         - insert:
             tableName: books
             columns:
-              - column:
-                  name: id
-                  valueNumeric: 6
               - column:
                   name: title
                   value: "Cross-group value-added hierarchy"
@@ -151,9 +133,6 @@ databaseChangeLog:
             tableName: books
             columns:
               - column:
-                  name: id
-                  valueNumeric: 7
-              - column:
                   name: title
                   value: "Business-focused logistical orchestration"
               - column:
@@ -174,9 +153,6 @@ databaseChangeLog:
         - insert:
             tableName: books
             columns:
-              - column:
-                  name: id
-                  valueNumeric: 8
               - column:
                   name: title
                   value: "Decentralized web-enabled pricing structure"
@@ -199,9 +175,6 @@ databaseChangeLog:
             tableName: books
             columns:
               - column:
-                  name: id
-                  valueNumeric: 9
-              - column:
                   name: title
                   value: "User-friendly stable neural-net"
               - column:
@@ -222,9 +195,6 @@ databaseChangeLog:
         - insert:
             tableName: books
             columns:
-              - column:
-                  name: id
-                  valueNumeric: 10
               - column:
                   name: title
                   value: "Operative bifurcated interface"

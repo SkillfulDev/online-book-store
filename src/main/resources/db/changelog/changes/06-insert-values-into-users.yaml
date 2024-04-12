@@ -119,7 +119,7 @@ databaseChangeLog:
                   valueComputed: (SELECT id FROM users WHERE email = 'david.chavez@yahoo.com')
               - column:
                   name: role_id
-                  valueComputed: (SELECT id FROM roles WHERE name = 'USER')
+                  valueComputed: (SELECT id FROM roles WHERE name = 'ROLE_USER')
         - insert:
             tableName: users_roles
             columns:
@@ -128,7 +128,7 @@ databaseChangeLog:
                   valueComputed: (SELECT id FROM users WHERE email = 'crystal.fernandez@hotmail.com')
               - column:
                   name: role_id
-                  valueComputed: (SELECT id FROM roles WHERE name = 'USER')
+                  valueComputed: (SELECT id FROM roles WHERE name = 'ROLE_USER')
         - insert:
             tableName: users_roles
             columns:
@@ -137,7 +137,7 @@ databaseChangeLog:
                   valueComputed: (SELECT id FROM users WHERE email = 'logan.guzman@gmail.com')
               - column:
                   name: role_id
-                  valueComputed: (SELECT id FROM roles WHERE name = 'USER')
+                  valueComputed: (SELECT id FROM roles WHERE name = 'ROLE_USER')
         - insert:
             tableName: users_roles
             columns:
@@ -146,7 +146,7 @@ databaseChangeLog:
                   valueComputed: (SELECT id FROM users WHERE email = 'elizabeth.hinton@gmail.com')
               - column:
                   name: role_id
-                  valueComputed: (SELECT id FROM roles WHERE name = 'USER')
+                  valueComputed: (SELECT id FROM roles WHERE name = 'ROLE_USER')
         - insert:
             tableName: users_roles
             columns:
@@ -155,7 +155,7 @@ databaseChangeLog:
                   valueComputed: (SELECT id FROM users WHERE email = 'keith.estrada@yahoo.com')
               - column:
                   name: role_id
-                  valueComputed: (SELECT id FROM roles WHERE name = 'USER')
+                  valueComputed: (SELECT id FROM roles WHERE name = 'ROLE_USER')
         - insert:
             tableName: users_roles
             columns:
@@ -164,4 +164,4 @@ databaseChangeLog:
                   valueComputed: (SELECT id FROM users WHERE email = 'admin@yahoo.com')
               - column:
                   name: role_id
-                  valueComputed: (SELECT id FROM roles WHERE name = 'ADMIN')
+                  valueComputed: (SELECT id FROM roles WHERE name = 'ROLE_ADMIN')

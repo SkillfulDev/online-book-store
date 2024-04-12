@@ -1,7 +1,7 @@
 package ua.chernonog.onlinebookstore.entity;
 
 public enum RoleName {
-    ADMIN,
-    USER,
-    GUEST
+    ROLE_ADMIN,
+    ROLE_USER,
+    ROLE_GUEST
 }
