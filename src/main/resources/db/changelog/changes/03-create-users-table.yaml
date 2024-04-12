@@ -38,6 +38,6 @@ databaseChangeLog:
                   name: shipping_address
                   type: varchar(255)
               - column:
-                  name: is_deleted
+                  name: deleted
                   type: bit
                   defaultValue: '0'
