@@ -33,7 +33,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
         User user = userMapper.toModel(requestDto);
         user.setPassword(passwordEncoder.encode(requestDto.getPassword()));
-        Role role = roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(
+        Role role = roleRepository.findByName(RoleName.USER).orElseThrow(
                 RuntimeException::new);
         Set<Role> roles = new HashSet<>();
         roles.add(role);
