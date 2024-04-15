@@ -32,7 +32,7 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     @Operation(summary = "Login user", description = "Login user")
-    public UserLoginResponseDto login(@RequestBody UserLoginRequestDto request) {
+    public UserLoginResponseDto login(@Valid @RequestBody UserLoginRequestDto request) {
         return authenticationService.authenticate(request);
     }
 }

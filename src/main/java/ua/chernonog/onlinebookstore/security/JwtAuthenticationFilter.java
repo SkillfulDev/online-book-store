@@ -18,7 +18,6 @@ import ua.chernonog.onlinebookstore.entity.User;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private static final int BEARER_PREFIX_LENGTH = 7;
     private static final String AUTHORIZATION_HEADER = "Authorization";
     private static final String BEARER_PREFIX_NAME = "Bearer";
     private final JwtUtil jwtUtil;
@@ -45,7 +44,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private String getToken(HttpServletRequest request) {
         String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_PREFIX_NAME)) {
-            return bearerToken.substring(BEARER_PREFIX_LENGTH);
+            return bearerToken.substring(BEARER_PREFIX_NAME.length());
         }
         return null;
     }
