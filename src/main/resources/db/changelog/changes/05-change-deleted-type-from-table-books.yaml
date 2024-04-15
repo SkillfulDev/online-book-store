@@ -1,9 +1,0 @@
-databaseChangeLog:
-  - changeSet:
-      id: change-deletet-type-from-table-books
-      author: chernonog
-      changes:
-        - modifyDataType:
-            tableName: books
-            columnName: deleted
-            newDataType: bit

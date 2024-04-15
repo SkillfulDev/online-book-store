@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-roles-table
+      author: chernonog
+      changes:
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: ENUM('ADMIN','USER')
+                  constraints:
+                    nullable: false
+                    unique: true
+  - changeSet:
+      id: insert-values-into-roles-table
+      author: chernonog
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: ADMIN
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: USER
