@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ua.chernonog.onlinebookstore.dto.request.UserLoginRequestDto;
 import ua.chernonog.onlinebookstore.dto.request.UserRegistrationRequestDto;
+import ua.chernonog.onlinebookstore.dto.response.UserLoginResponseDto;
 import ua.chernonog.onlinebookstore.dto.response.UserResponseDto;
 import ua.chernonog.onlinebookstore.exception.RegistrationException;
-import ua.chernonog.onlinebookstore.service.AuthenticationService;
+import ua.chernonog.onlinebookstore.security.AuthenticationService;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,5 +28,11 @@ public class AuthenticationController {
             @Valid @RequestBody UserRegistrationRequestDto requestDto
     ) throws RegistrationException {
         return authenticationService.register(requestDto);
+    }
+
+    @PostMapping("/login")
+    @Operation(summary = "Login user", description = "Login user")
+    public UserLoginResponseDto login(@RequestBody UserLoginRequestDto request) {
+        return authenticationService.authenticate(request);
     }
 }

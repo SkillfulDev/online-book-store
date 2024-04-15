@@ -1,12 +1,17 @@
-package ua.chernonog.onlinebookstore.service.impl;
+package ua.chernonog.onlinebookstore.security;
 
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ua.chernonog.onlinebookstore.dto.request.UserLoginRequestDto;
 import ua.chernonog.onlinebookstore.dto.request.UserRegistrationRequestDto;
+import ua.chernonog.onlinebookstore.dto.response.UserLoginResponseDto;
 import ua.chernonog.onlinebookstore.dto.response.UserResponseDto;
 import ua.chernonog.onlinebookstore.entity.Role;
 import ua.chernonog.onlinebookstore.entity.RoleName;
@@ -15,7 +20,6 @@ import ua.chernonog.onlinebookstore.exception.RegistrationException;
 import ua.chernonog.onlinebookstore.mapper.UserMapper;
 import ua.chernonog.onlinebookstore.repository.user.RoleRepository;
 import ua.chernonog.onlinebookstore.repository.user.UserRepository;
-import ua.chernonog.onlinebookstore.service.AuthenticationService;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +28,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final JwtUtil jwtUtil;
+    private final AuthenticationManager authenticationManager;
 
     @Override
     public UserResponseDto register(UserRegistrationRequestDto requestDto)
@@ -40,5 +46,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         roles.add(role);
         user.setRoles(roles);
         return userMapper.toDto(userRepository.save(user));
+    }
+
+    @Override
+    public UserLoginResponseDto authenticate(UserLoginRequestDto request) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword())
+
+        );
+
+        String token = jwtUtil.generateToken(authentication.getName());
+        return new UserLoginResponseDto(token);
     }
 }
