@@ -1,6 +1,7 @@
 package ua.chernonog.onlinebookstore.service.impl;
 
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,8 +34,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
         User user = userMapper.toModel(requestDto);
         user.setPassword(passwordEncoder.encode(requestDto.getPassword()));
-        Role role = roleRepository.findByName(RoleName.USER).orElseThrow(
-                RuntimeException::new);
+        Role role = roleRepository.findByName(RoleName.USER).orElseThrow(() ->
+                new NoSuchElementException("Role USER not found"));
         Set<Role> roles = new HashSet<>();
         roles.add(role);
         user.setRoles(roles);

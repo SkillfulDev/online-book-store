@@ -23,7 +23,7 @@ public class CreateBookRequestDto {
     @DecimalMin(value = "0.00", inclusive = false, message = "Price must be greater than 0")
     private BigDecimal price;
     @NotBlank
-    @Size(max = 255, message = "Description length must be less than 100 characters")
+    @Size(max = 255, message = "Description length must be less than 255 characters")
     private String description;
     @URL(message = "Cover image must be a valid URL")
     private String coverImage;
