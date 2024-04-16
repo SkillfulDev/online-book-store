@@ -1,4 +1,4 @@
-package ua.chernonog.onlinebookstore.service;
+package ua.chernonog.onlinebookstore.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
