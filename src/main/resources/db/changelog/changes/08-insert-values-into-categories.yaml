@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-values-into-categories
+      author: chernonog
+      changes:
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: "Fiction"
+              - column:
+                  name: description
+                  value: "Imaginary events & characters"
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: "Non-Fiction"
+              - column:
+                  name: description
+                  value: "Based on factual information"
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: "Young Adult"
+              - column:
+                  name: description
+                  value: "Themes like friendship, love"
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: "Children's Literature"
+              - column:
+                  name: description
+                  value: "Books for children with images"
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: "Graphic Novels"
+              - column:
+                  name: description
+                  value: "Story via sequential art"
