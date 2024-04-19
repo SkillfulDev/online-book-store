@@ -66,7 +66,7 @@ public class CategoryServiceImpl implements CategoryService {
                 new EntityNotFoundException("Can`t find category with id " + id + " in DB"));
     }
 
-            private Category updateCategoryFields(
+    private Category updateCategoryFields(
             Category category,
             CreateCategoryDto createCategoryDto
     ) {
