@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import ua.chernonog.onlinebookstore.exception.JwtTokenValidException;
 
 @Component
 public class JwtUtil {
@@ -39,16 +40,16 @@ public class JwtUtil {
                     .parseClaimsJws(token);
 
             return !claimsJws.getBody().getExpiration().before(new Date());
-        } catch (JwtException | IllegalArgumentException e) {
-            throw new JwtException("Expired or invalid JWT token");
+        } catch (JwtException e) {
+            throw new JwtTokenValidException("Expired or invalid JWT token", e);
         }
     }
 
     public String getUserEmail(String token) {
-        return getClaimFromToken(token,Claims::getSubject);
+        return getClaimFromToken(token, Claims::getSubject);
     }
 
-    private <T> T getClaimFromToken(String token, Function<Claims,T> claimsResolver) {
+    private <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(secretKey)
                 .build()

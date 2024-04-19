@@ -1,15 +1,17 @@
 package ua.chernonog.onlinebookstore.service.impl;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import ua.chernonog.onlinebookstore.dto.request.BookSearchParametersDto;
-import ua.chernonog.onlinebookstore.dto.request.CreateBookRequestDto;
-import ua.chernonog.onlinebookstore.dto.response.BookResponseDto;
+import ua.chernonog.onlinebookstore.dto.request.book.BookSearchParametersDto;
+import ua.chernonog.onlinebookstore.dto.request.book.CreateBookRequestDto;
+import ua.chernonog.onlinebookstore.dto.response.book.BookDtoWithoutCategoryIds;
+import ua.chernonog.onlinebookstore.dto.response.book.BookResponseDto;
 import ua.chernonog.onlinebookstore.entity.Book;
+import ua.chernonog.onlinebookstore.entity.Category;
 import ua.chernonog.onlinebookstore.exception.EntityNotFoundException;
 import ua.chernonog.onlinebookstore.mapper.BookMapper;
 import ua.chernonog.onlinebookstore.repository.SpecificationBuilder;
@@ -30,31 +32,29 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookResponseDto> findAll(Pageable pageable) {
+    public List<BookResponseDto> getAll(Pageable pageable) {
         return bookRepository.findAll(pageable).stream()
                 .map(bookMapper::toDto)
                 .toList();
     }
 
     @Override
-    public BookResponseDto findBookById(Long id) {
-        Optional<Book> bookFromDB = bookRepository.findById(id);
-
-        return bookMapper.toDto(bookFromDB.orElseThrow(() ->
-                new EntityNotFoundException("Can`t find book with id " + id + " in DB")));
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        bookRepository.deleteById(id);
+    public BookResponseDto getById(Long id) {
+        return bookMapper.toDto(getBookIfExist(id));
     }
 
     @Override
     public BookResponseDto updateById(Long id, CreateBookRequestDto requestDto) {
-        Book book = bookRepository.findById(id)
-                .map(existingBook -> updateBookFields(existingBook, requestDto))
-                .orElseThrow(() -> new EntityNotFoundException("Can't update user with id " + id));
-        return bookMapper.toDto(bookRepository.save(book));
+        Book bookFromDb = getBookIfExist(id);
+        Book updatedBook = updateBookFields(bookFromDb, requestDto);
+
+        return bookMapper.toDto(bookRepository.save(updatedBook));
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        bookRepository.deleteById(
+                getBookIfExist(id).getId());
     }
 
     @Override
@@ -66,6 +66,19 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findAll(bookSpecification, pageable).stream()
                 .map(bookMapper::toDto)
                 .toList();
+    }
+
+    @Override
+    public List<BookDtoWithoutCategoryIds> getBookByCategory(Category category, Pageable pageable) {
+        return bookRepository.findBooksByCategoryId(category.getId(), pageable)
+                .stream()
+                .map(bookMapper::toDtoWithoutCategories)
+                .collect(Collectors.toList());
+    }
+
+    private Book getBookIfExist(Long id) {
+        return bookRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException("Can`t find book with id " + id + " in DB"));
     }
 
     private Book updateBookFields(Book book, CreateBookRequestDto requestDto) {

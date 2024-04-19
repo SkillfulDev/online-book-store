@@ -19,4 +19,6 @@ databaseChangeLog:
       file: db/changelog/changes/09-create-books-categories-table.yaml
   - include:
       file: db/changelog/changes/10-insert-values-into-books-categories-table.yaml
+  - include:
+      file: db/changelog/changes/11-add-column-deleted-into-categories-table.yaml
 

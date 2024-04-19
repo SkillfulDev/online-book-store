@@ -20,7 +20,7 @@ import org.hibernate.annotations.SoftDelete;
 @Getter
 @Setter
 @Table(name = "books")
-@SoftDelete()
+@SoftDelete
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

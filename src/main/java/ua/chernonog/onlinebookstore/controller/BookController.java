@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.chernonog.onlinebookstore.dto.request.BookSearchParametersDto;
-import ua.chernonog.onlinebookstore.dto.request.CreateBookRequestDto;
-import ua.chernonog.onlinebookstore.dto.response.BookResponseDto;
+import ua.chernonog.onlinebookstore.dto.request.book.BookSearchParametersDto;
+import ua.chernonog.onlinebookstore.dto.request.book.CreateBookRequestDto;
+import ua.chernonog.onlinebookstore.dto.response.book.BookResponseDto;
 import ua.chernonog.onlinebookstore.service.BookService;
 
 @RestController
@@ -31,7 +31,7 @@ public class BookController {
     @Operation(summary = "Get all books", description = "Get all books")
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     public List<BookResponseDto> getAll(Pageable pageable) {
-        return bookService.findAll(pageable);
+        return bookService.getAll(pageable);
     }
 
     @PostMapping
@@ -45,7 +45,7 @@ public class BookController {
     @Operation(summary = "Get a book by Id", description = "Get a book by Id")
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     public BookResponseDto getBookById(@PathVariable Long id) {
-        return bookService.findBookById(id);
+        return bookService.getById(id);
     }
 
     @DeleteMapping("/{id}")
@@ -53,7 +53,6 @@ public class BookController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void delete(@PathVariable Long id) {
         bookService.deleteById(id);
-
     }
 
     @PutMapping("/{id}")

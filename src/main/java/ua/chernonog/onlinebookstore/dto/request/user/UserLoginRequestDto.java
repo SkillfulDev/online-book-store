@@ -1,4 +1,4 @@
-package ua.chernonog.onlinebookstore.dto.request;
+package ua.chernonog.onlinebookstore.dto.request.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

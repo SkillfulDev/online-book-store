@@ -23,6 +23,7 @@ import ua.chernonog.onlinebookstore.security.JwtAuthenticationFilter;
 public class SecurityConfig {
     private final CustomUserDetailsService userDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationExceptionHandler jwtAuthenticationExceptionHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -34,26 +35,27 @@ public class SecurityConfig {
         return http
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests((
-                        auth -> auth
-                                .requestMatchers("/auth/**",
-                                        "/error",
-                                        "/swagger-ui/**",
-                                        "/v3/api-docs/**",
-                                        "/swagger-resources/**",
-                                        "/swagger-ui.html",
-                                        "/webjars/**")
-                                .permitAll()
-                                .anyRequest()
-                                .authenticated()
+                .authorizeHttpRequests((auth -> auth
+                        .requestMatchers(
+                                "/auth/**",
+                                "/error",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-resources/**",
+                                "/swagger-ui.html",
+                                "/webjars/**")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated()
                 ))
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(
-                        SessionCreationPolicy.STATELESS
-                ))
-                .addFilterBefore(jwtAuthenticationFilter,
+                        SessionCreationPolicy.STATELESS))
+                .addFilterBefore(
+                        jwtAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class)
                 .userDetailsService(userDetailsService)
+                .addFilterBefore(jwtAuthenticationExceptionHandler, JwtAuthenticationFilter.class)
                 .build();
     }
 

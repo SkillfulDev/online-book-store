@@ -1,4 +1,4 @@
-package ua.chernonog.onlinebookstore.dto.request;
+package ua.chernonog.onlinebookstore.dto.request.book;
 
 import lombok.Data;
 
