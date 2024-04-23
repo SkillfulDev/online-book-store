@@ -49,7 +49,12 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     }
 
     @ExceptionHandler(RegistrationException.class)
-    private ResponseEntity<ErrorDto> handleRegistrationException(RegistrationException e) {
+    public ResponseEntity<ErrorDto> handleRegistrationException(RegistrationException e) {
+        return getStandartTemplateOfResponseEntity(e, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DuplicateEntityException.class)
+    public ResponseEntity<ErrorDto> handleDuplicateEntityException(DuplicateEntityException e) {
         return getStandartTemplateOfResponseEntity(e, HttpStatus.BAD_REQUEST);
     }
 

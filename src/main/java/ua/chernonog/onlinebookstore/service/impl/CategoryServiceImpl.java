@@ -1,5 +1,6 @@
 package ua.chernonog.onlinebookstore.service.impl;
 
+import jakarta.transaction.Transactional;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryMapper categoryMapper;
     private final BookService bookService;
 
+    @Transactional
     @Override
     public CategoryResponseDto save(CreateCategoryDto categoryDto) {
         return categoryMapper.toDto(
@@ -41,6 +43,7 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryMapper.toDto(getCategoryIfExist(id));
     }
 
+    @Transactional
     @Override
     public CategoryResponseDto updateById(Long id, CreateCategoryDto createCategoryDto) {
         Category categoryFromDb = getCategoryIfExist(id);
@@ -49,6 +52,7 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryMapper.toDto(categoryRepository.save(updatedCategory));
     }
 
+    @Transactional
     @Override
     public void deleteById(Long id) {
         categoryRepository.deleteById(
