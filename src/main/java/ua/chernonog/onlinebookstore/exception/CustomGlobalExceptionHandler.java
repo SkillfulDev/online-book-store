@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import ua.chernonog.onlinebookstore.exception.dto.ErrorDto;
+import ua.chernonog.onlinebookstore.exception.dto.ErrorResponse;
 
 @ControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -25,7 +25,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
             HttpStatusCode status,
             WebRequest request
     ) {
-        ErrorDto errorDto = new ErrorDto(
+        ErrorResponse errorResponse = new ErrorResponse(
                 LocalDateTime.now(),
                 HttpStatus.resolve(status.value()),
                 ex.getBindingResult().getAllErrors().stream()
@@ -33,31 +33,31 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
                         .toList());
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(errorDto);
+                .body(errorResponse);
     }
 
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
-    public ResponseEntity<ErrorDto> handleSqlIntegrityConstraintViolationException(
+    public ResponseEntity<ErrorResponse> handleSqlIntegrityConstraintViolationException(
             SQLIntegrityConstraintViolationException e) {
         return getStandartTemplateOfResponseEntity(e, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<ErrorDto> handleEntityNotFoundException(EntityNotFoundException e) {
+    public ResponseEntity<ErrorResponse> handleEntityNotFoundException(EntityNotFoundException e) {
         return getStandartTemplateOfResponseEntity(e, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(RegistrationException.class)
-    private ResponseEntity<ErrorDto> handleRegistrationException(RegistrationException e) {
+    private ResponseEntity<ErrorResponse> handleRegistrationException(RegistrationException e) {
         return getStandartTemplateOfResponseEntity(e, HttpStatus.BAD_REQUEST);
     }
 
-    private ResponseEntity<ErrorDto> getStandartTemplateOfResponseEntity(
+    private ResponseEntity<ErrorResponse> getStandartTemplateOfResponseEntity(
             Throwable e,
             HttpStatus httpStatus) {
-        ErrorDto errorDto = new ErrorDto(LocalDateTime.now(), httpStatus,
+        ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), httpStatus,
                 List.of(e.getMessage()));
-        return ResponseEntity.status(httpStatus).body(errorDto);
+        return ResponseEntity.status(httpStatus).body(errorResponse);
     }
 }

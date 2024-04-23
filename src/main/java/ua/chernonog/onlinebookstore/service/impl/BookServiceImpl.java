@@ -1,7 +1,6 @@
 package ua.chernonog.onlinebookstore.service.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -11,7 +10,6 @@ import ua.chernonog.onlinebookstore.dto.request.book.CreateBookRequestDto;
 import ua.chernonog.onlinebookstore.dto.response.book.BookDtoWithoutCategoryIds;
 import ua.chernonog.onlinebookstore.dto.response.book.BookResponseDto;
 import ua.chernonog.onlinebookstore.entity.Book;
-import ua.chernonog.onlinebookstore.entity.Category;
 import ua.chernonog.onlinebookstore.exception.EntityNotFoundException;
 import ua.chernonog.onlinebookstore.mapper.BookMapper;
 import ua.chernonog.onlinebookstore.repository.SpecificationBuilder;
@@ -69,11 +67,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDtoWithoutCategoryIds> getBookByCategory(Category category, Pageable pageable) {
-        return bookRepository.findBooksByCategoryId(category.getId(), pageable)
+    public List<BookDtoWithoutCategoryIds> getBookByCategory(Long id, Pageable pageable) {
+        return bookRepository.findBooksByCategoryId(id, pageable)
                 .stream()
                 .map(bookMapper::toDtoWithoutCategories)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private Book getBookIfExist(Long id) {

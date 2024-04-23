@@ -6,7 +6,6 @@ import ua.chernonog.onlinebookstore.dto.request.book.BookSearchParametersDto;
 import ua.chernonog.onlinebookstore.dto.request.book.CreateBookRequestDto;
 import ua.chernonog.onlinebookstore.dto.response.book.BookDtoWithoutCategoryIds;
 import ua.chernonog.onlinebookstore.dto.response.book.BookResponseDto;
-import ua.chernonog.onlinebookstore.entity.Category;
 
 public interface BookService {
     BookResponseDto save(CreateBookRequestDto bookDto);
@@ -21,5 +20,5 @@ public interface BookService {
 
     List<BookResponseDto> search(BookSearchParametersDto searchParameters, Pageable pageable);
 
-    List<BookDtoWithoutCategoryIds> getBookByCategory(Category category, Pageable pageable);
+    List<BookDtoWithoutCategoryIds> getBookByCategory(Long id, Pageable pageable);
 }
