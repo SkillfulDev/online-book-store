@@ -76,5 +76,4 @@ public class CategoryController {
     ) {
         return categoryService.getBookByCategory(id, pageable);
     }
-
 }

@@ -1,4 +1,4 @@
-package ua.chernonog.onlinebookstore.config;
+package ua.chernonog.onlinebookstore.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import ua.chernonog.onlinebookstore.exception.JwtTokenValidException;
 import ua.chernonog.onlinebookstore.exception.dto.ErrorResponse;
 
 @Slf4j
