@@ -61,8 +61,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<BookDtoWithoutCategoryIds> getBookByCategory(Long id, Pageable pageable) {
-        Category categoryFromBD = getCategoryIfExist(id);
-        return bookService.getBookByCategory(categoryFromBD, pageable);
+        return bookService.getBookByCategory(id, pageable);
     }
 
     private Category getCategoryIfExist(Long id) {
@@ -79,4 +78,5 @@ public class CategoryServiceImpl implements CategoryService {
         category.setDescription(createCategoryDto.getDescription());
         return category;
     }
+
 }

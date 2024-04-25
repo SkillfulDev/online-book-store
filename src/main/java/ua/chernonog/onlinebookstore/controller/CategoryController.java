@@ -74,7 +74,6 @@ public class CategoryController {
             @PathVariable Long id,
             Pageable pageable
     ) {
-        return categoryService.getBookByCategory(id,pageable);
+        return categoryService.getBookByCategory(id, pageable);
     }
-
 }
