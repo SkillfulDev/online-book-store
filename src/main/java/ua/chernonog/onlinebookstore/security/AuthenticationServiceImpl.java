@@ -9,10 +9,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ua.chernonog.onlinebookstore.dto.request.UserLoginRequestDto;
-import ua.chernonog.onlinebookstore.dto.request.UserRegistrationRequestDto;
-import ua.chernonog.onlinebookstore.dto.response.UserLoginResponseDto;
-import ua.chernonog.onlinebookstore.dto.response.UserResponseDto;
+import ua.chernonog.onlinebookstore.dto.request.user.UserLoginRequestDto;
+import ua.chernonog.onlinebookstore.dto.request.user.UserRegistrationRequestDto;
+import ua.chernonog.onlinebookstore.dto.response.user.UserLoginResponseDto;
+import ua.chernonog.onlinebookstore.dto.response.user.UserResponseDto;
 import ua.chernonog.onlinebookstore.entity.Role;
 import ua.chernonog.onlinebookstore.entity.RoleName;
 import ua.chernonog.onlinebookstore.entity.User;

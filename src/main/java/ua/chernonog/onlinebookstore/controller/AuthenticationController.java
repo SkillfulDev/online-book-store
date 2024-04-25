@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.chernonog.onlinebookstore.dto.request.UserLoginRequestDto;
-import ua.chernonog.onlinebookstore.dto.request.UserRegistrationRequestDto;
-import ua.chernonog.onlinebookstore.dto.response.UserLoginResponseDto;
-import ua.chernonog.onlinebookstore.dto.response.UserResponseDto;
+import ua.chernonog.onlinebookstore.dto.request.user.UserLoginRequestDto;
+import ua.chernonog.onlinebookstore.dto.request.user.UserRegistrationRequestDto;
+import ua.chernonog.onlinebookstore.dto.response.user.UserLoginResponseDto;
+import ua.chernonog.onlinebookstore.dto.response.user.UserResponseDto;
 import ua.chernonog.onlinebookstore.exception.RegistrationException;
 import ua.chernonog.onlinebookstore.security.AuthenticationService;
 

@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-column-deleted-into-categories-table
+      author: chernonog
+      changes:
+        - addColumn:
+            tableName: categories
+            columns:
+              - column:
+                  name: deleted
+                  type: bit
+                  defaultValue: '0'

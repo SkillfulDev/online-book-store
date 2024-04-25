@@ -3,7 +3,7 @@ package ua.chernonog.onlinebookstore.repository.book;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-import ua.chernonog.onlinebookstore.dto.request.BookSearchParametersDto;
+import ua.chernonog.onlinebookstore.dto.request.book.BookSearchParametersDto;
 import ua.chernonog.onlinebookstore.entity.Book;
 import ua.chernonog.onlinebookstore.repository.SpecificationBuilder;
 import ua.chernonog.onlinebookstore.repository.SpecificationProviderManager;

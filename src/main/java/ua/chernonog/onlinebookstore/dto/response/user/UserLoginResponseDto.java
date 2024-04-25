@@ -1,4 +1,4 @@
-package ua.chernonog.onlinebookstore.dto.response;
+package ua.chernonog.onlinebookstore.dto.response.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
