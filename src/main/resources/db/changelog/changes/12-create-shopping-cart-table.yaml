@@ -26,5 +26,3 @@ databaseChangeLog:
                   name: deleted
                   type: bit
                   defaultValue: '0'
-
-

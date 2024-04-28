@@ -41,14 +41,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public ShoppingCartResponseDto getById(Long userId) {
         return shoppingCartMapper.toDto(findShoppingCartIfExist(userId)
                 .orElseThrow(() ->
-                        new EntityNotFoundException("User didn't make any orders")));
+                        new EntityNotFoundException("User don`t have shopping cart")));
 
     }
 
     @Transactional
     @Override
     public void deleteById(Long userId, Long cartItemId) {
-        ShoppingCart shoppingCardFromDb = getShoppingCartOrThrow(userId);
+        ShoppingCart shoppingCardFromDb = getShoppingCart(userId);
         shoppingCardFromDb.getCartItems().stream()
                 .filter(cartItem -> cartItem.getId().equals(cartItemId))
                 .findFirst()
@@ -65,7 +65,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Transactional
     @Override
     public CartItemResponseDto updateById(Long userId, Long cartItemId, int quantity) {
-        ShoppingCart shoppingCart = getShoppingCartOrThrow(userId);
+        ShoppingCart shoppingCart = getShoppingCart(userId);
         return shoppingCart.getCartItems().stream()
                 .filter(cartItem -> cartItem.getId().equals(cartItemId))
                 .findFirst()
@@ -97,7 +97,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return newShoppingCart;
     }
 
-    private ShoppingCart getShoppingCartOrThrow(Long userId) {
+    private ShoppingCart getShoppingCart(Long userId) {
         return findShoppingCartIfExist(userId)
                 .orElseThrow(() ->
                         new EntityNotFoundException(
