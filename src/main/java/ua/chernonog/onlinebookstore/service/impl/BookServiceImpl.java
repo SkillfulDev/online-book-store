@@ -1,5 +1,6 @@
 package ua.chernonog.onlinebookstore.service.impl;
 
+import jakarta.transaction.Transactional;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +24,7 @@ public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
     private final SpecificationBuilder<Book> specificationBuilder;
 
+    @Transactional
     @Override
     public BookResponseDto save(CreateBookRequestDto bookDto) {
         Book newBook = bookMapper.toModel(bookDto);
@@ -41,6 +43,7 @@ public class BookServiceImpl implements BookService {
         return bookMapper.toDto(getBookIfExist(id));
     }
 
+    @Transactional
     @Override
     public BookResponseDto updateById(Long id, CreateBookRequestDto requestDto) {
         Book bookFromDb = getBookIfExist(id);
@@ -49,6 +52,7 @@ public class BookServiceImpl implements BookService {
         return bookMapper.toDto(bookRepository.save(updatedBook));
     }
 
+    @Transactional
     @Override
     public void deleteById(Long id) {
         bookRepository.deleteById(
