@@ -13,6 +13,7 @@ import ua.chernonog.onlinebookstore.entity.Order;
 import ua.chernonog.onlinebookstore.entity.OrderItem;
 import ua.chernonog.onlinebookstore.exception.EntityNotFoundException;
 import ua.chernonog.onlinebookstore.mapper.OrderItemMapper;
+import ua.chernonog.onlinebookstore.repository.order.OrderRepository;
 import ua.chernonog.onlinebookstore.repository.orderitem.OrderItemRepository;
 import ua.chernonog.onlinebookstore.service.OrderItemService;
 
@@ -21,6 +22,7 @@ import ua.chernonog.onlinebookstore.service.OrderItemService;
 public class OrderItemServiceImpl implements OrderItemService {
     private final OrderItemRepository orderItemRepository;
     private final OrderItemMapper orderItemMapper;
+    private final OrderRepository orderRepository;
 
     @Override
     public Set<OrderItem> save(Order savedOrder, Map<Book, Integer> bookFromCartItem) {
@@ -30,6 +32,11 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Override
     public List<OrderItemResponseDto> getAllOrderItem(Long orderId) {
         List<OrderItem> orderItemsFromDb = orderItemRepository.findByOrderId(orderId);
+
+        if (orderItemsFromDb.isEmpty()) {
+            throw new EntityNotFoundException("No order items found for order with id " + orderId);
+        }
+
         return orderItemsFromDb.stream()
                 .map(orderItemMapper::toDto)
                 .toList();
@@ -37,8 +44,14 @@ public class OrderItemServiceImpl implements OrderItemService {
 
     @Override
     public OrderItemResponseDto getItem(Long orderId, Long itemId) {
+        boolean isOrderExists = orderRepository.existsById(orderId);
+        if (!isOrderExists) {
+            throw new EntityNotFoundException("Order with id " + orderId + " not found");
+        }
+
         Optional<OrderItem> orderItemFromDb = orderItemRepository
                 .findByIdAndOrderId(itemId, orderId);
+
         return orderItemFromDb
                 .map(orderItemMapper::toDto)
                 .orElseThrow(() ->
