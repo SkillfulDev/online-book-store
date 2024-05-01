@@ -5,6 +5,5 @@ import ua.chernonog.onlinebookstore.entity.Status;
 
 @Data
 public class OrderStatusRequestDto {
-
     private Status status;
 }
