@@ -48,8 +48,8 @@ public class OrderController {
 
     @PatchMapping("/{id}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @Operation(summary = "Update an order status",
-            description = "Update an order status")
+    @Operation(summary = "Update an order status by id",
+            description = "Update an order status by id")
     public void updateOrderStatus(
             @Valid @RequestBody OrderStatusRequestDto orderStatus,
             @PathVariable Long id,

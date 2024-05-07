@@ -38,8 +38,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void place(OrderRequestDto order, User currentUser) {
         ShoppingCart userShoppingCart = getUserShoppingCart(currentUser);
-        BigDecimal totalPrice = calcTotalPriceForCartItem(userShoppingCart);
-        Map<Book, Integer> booksFromCartItem = getBookQuantityMapFromCartItems(userShoppingCart);
+        BigDecimal totalPrice = calculateTotalPrice(userShoppingCart);
+        Map<Book, Integer> booksFromCartItem = getBookToQuantityMap(userShoppingCart);
 
         Order newOrder = createNewOrder(order, currentUser, totalPrice);
         Order savedOrder = orderRepository.save(newOrder);
@@ -77,7 +77,7 @@ public class OrderServiceImpl implements OrderService {
         return newOrder;
     }
 
-    private BigDecimal calcTotalPriceForCartItem(ShoppingCart shoppingCart) {
+    private BigDecimal calculateTotalPrice(ShoppingCart shoppingCart) {
         return shoppingCart.getCartItems().stream()
                 .map(cartItem -> cartItem.getBook().getPrice()
                         .multiply(BigDecimal.valueOf(cartItem.getQuantity())))
@@ -91,7 +91,7 @@ public class OrderServiceImpl implements OrderService {
         );
     }
 
-    private Map<Book, Integer> getBookQuantityMapFromCartItems(ShoppingCart userShoppingCart) {
+    private Map<Book, Integer> getBookToQuantityMap(ShoppingCart userShoppingCart) {
         Map<Book, Integer> bookFromCartItem = new HashMap<>();
         for (CartItem cartItem : userShoppingCart.getCartItems()) {
             bookFromCartItem.put(cartItem.getBook(), cartItem.getQuantity());
