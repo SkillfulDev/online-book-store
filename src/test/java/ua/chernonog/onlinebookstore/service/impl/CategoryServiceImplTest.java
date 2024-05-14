@@ -103,5 +103,4 @@ class CategoryServiceImplTest {
 
         assertEquals(SPECIFIC_CATEGORY_NAME, result.getName());
     }
-
 }

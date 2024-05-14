@@ -21,6 +21,8 @@ import static ua.chernonog.onlinebookstore.config.util.BookConstants.UPDATED_BOO
 import static ua.chernonog.onlinebookstore.config.util.BookConstants.UPDATED_BOOK_ISBN;
 import static ua.chernonog.onlinebookstore.config.util.BookConstants.UPDATED_BOOK_PRICE;
 import static ua.chernonog.onlinebookstore.config.util.BookConstants.UPDATED_BOOK_TITLE;
+import static ua.chernonog.onlinebookstore.config.util.BookConstants.VALID_BOOK_ID;
+import static ua.chernonog.onlinebookstore.config.util.CategoryConstants.CATEGORY_ID;
 import static ua.chernonog.onlinebookstore.config.util.UtilConstants.DEFAULT_PAGE_NUMBER;
 import static ua.chernonog.onlinebookstore.config.util.UtilConstants.DEFAULT_PAGE_SIZE;
 
@@ -92,7 +94,7 @@ class BookServiceImplTest {
     @DisplayName("Retrieve all books with pagination")
     void getAll_ShouldReturnAllBooks() {
         Book book = new Book();
-        book.setId(1L);
+        book.setId(VALID_BOOK_ID);
         book.setTitle(SET_BOOK_TITLE);
         List<Book> bookList = new ArrayList<>();
         bookList.add(book);
@@ -117,7 +119,7 @@ class BookServiceImplTest {
     @DisplayName("Get a book by id")
     void getBook_WithValidBook_ShouldReturnValidBook() {
         Book book = new Book();
-        book.setId(1L);
+        book.setId(VALID_BOOK_ID);
         book.setTitle(TITLE);
         book.setAuthor(EXAMPLE_BOOK_AUTHOR);
         book.setIsbn(EXAMPLE_BOOK_ISBN);
@@ -146,7 +148,7 @@ class BookServiceImplTest {
         requestDto.setDescription(UPDATED_BOOK_DESCRIPTION);
         requestDto.setCoverImage(UPDATED_BOOK_COVER_IMAGE);
 
-        Long bookId = 1L;
+        Long bookId = VALID_BOOK_ID;
         Book existingBook = new Book();
         existingBook.setId(bookId);
         existingBook.setTitle(OLD_BOOK_TITLE);
@@ -173,7 +175,7 @@ class BookServiceImplTest {
     @Test
     @DisplayName("Delete a book by ID")
     void deleteById_WithValidId_ShouldDeleteTheBook() {
-        Long bookId = 1L;
+        Long bookId = VALID_BOOK_ID;
         Book mockBook = new Book();
         mockBook.setId(bookId);
 
@@ -189,7 +191,7 @@ class BookServiceImplTest {
     @Test
     @DisplayName("Retrieve books by category with pagination")
     void getBookByCategory_WithValidCategory_ShouldReturnBooks() {
-        Long categoryId = 1L;
+        Long categoryId = CATEGORY_ID;
         Pageable pageable = PageRequest.of(DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE);
         List<Book> bookList = Collections.singletonList(new Book());
         Page<Book> page = new PageImpl<>(bookList);
