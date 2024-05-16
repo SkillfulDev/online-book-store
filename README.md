@@ -40,6 +40,10 @@ The Online Bookstore API aims to meet the growing demand for online book shoppin
 - Admin Dashboard for Managing Books and Orders
 - Secure RESTful API Endpoints
 
+## 📷 Visual Overview
+
+[![Watch on Loom](https://img.shields.io/badge/Watch%20on-Loom-00a4d9)](https://www.loom.com/share/0cd1e162bf9149a28e29ef4f4fac4874?sid=e013b440-51e7-468b-9e6f-bdfe5b0da532)
+
 ## 📦 Installation
 
 1. **Clone the repository**:
