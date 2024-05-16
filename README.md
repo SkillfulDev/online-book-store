@@ -42,7 +42,7 @@ The Online Bookstore API aims to meet the growing demand for online book shoppin
 
 ## 📷 Visual Overview
 
-[![Watch on Loom](https://img.shields.io/badge/Watch%20on-Loom-00a4d9)](https://www.loom.com/share/0cd1e162bf9149a28e29ef4f4fac4874?sid=e013b440-51e7-468b-9e6f-bdfe5b0da532)
+[![Watch on Loom](https://img.shields.io/badge/Watch%20on-Loom-00a4d9)](https://www.loom.com/share/763aca67b62640aaa5ba1d31ecf74b56?sid=e3052068-fa6b-4fc7-8e8b-4a3f9dd86ab4)
 
 ## 📦 Installation
 
