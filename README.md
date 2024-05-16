@@ -1,5 +1,5 @@
 
-# 📚 Online Bookstore API
+# 🎖️ Online Bookstore API
 
 Welcome to the Online Bookstore API! This project is a comprehensive example of building a fully functional online bookstore using Spring Boot. It encompasses a wide range of features including user registration, book browsing, shopping cart management, and order processing, providing a robust foundation for a real-world application.
 
