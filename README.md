@@ -53,11 +53,11 @@ The Online Bookstore API aims to meet the growing demand for online book shoppin
     ```
 
 2. **Configure the database**:
-    Create a new MySQL database:
+   Create a new MySQL database:
     ```sql
     CREATE DATABASE online_book_store;
     ```
-    Update the `application.properties` file with your MySQL database credentials:
+   Update the `application.properties` file with your MySQL database credentials:
     ```properties
     spring.datasource.url=jdbc:mysql://localhost:3306/online_book_store
     spring.datasource.username=root
@@ -75,7 +75,7 @@ The Online Bookstore API aims to meet the growing demand for online book shoppin
     ```sh
     mvn spring-boot:run
     ```
-    The server will start on `http://localhost:8080`.
+   The server will start on `http://localhost:8080`.
 
 ### Using Docker
 
