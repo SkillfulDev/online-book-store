@@ -42,4 +42,5 @@ public class BookConstants {
     public static final BigDecimal EXAMPLE_BOOK_PRICE = new BigDecimal("19.99");
     public static final String EXAMPLE_BOOK_DESCRIPTION =
             "A detailed description of the example book.";
+    public static final String TITLE_JSON_PATH = "$.title";
 }

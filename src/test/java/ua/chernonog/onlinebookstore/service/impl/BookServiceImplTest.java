@@ -70,13 +70,7 @@ class BookServiceImplTest {
         requestDto.setDescription(NEW_BOOK_DESCRIPTION);
         requestDto.setCoverImage(NEW_BOOK_COVER_IMAGE);
 
-        BookResponseDto responseDto = new BookResponseDto();
-        responseDto.setTitle(requestDto.getTitle());
-        responseDto.setAuthor(requestDto.getAuthor());
-        responseDto.setIsbn(requestDto.getIsbn());
-        responseDto.setPrice(requestDto.getPrice());
-        responseDto.setDescription(requestDto.getDescription());
-        responseDto.setCoverImage(requestDto.getCoverImage());
+        BookResponseDto responseDto = getBookResponseDto(requestDto);
 
         Book newBook = new Book();
 
@@ -111,7 +105,7 @@ class BookServiceImplTest {
 
         List<BookResponseDto> books = bookService.getAll(pageable);
 
-        assertEquals(1, books.size());
+        assertEquals(page.getSize(), books.size());
         assertEquals(SET_BOOK_TITLE, books.get(0).getTitle());
     }
 
@@ -153,13 +147,7 @@ class BookServiceImplTest {
         existingBook.setId(bookId);
         existingBook.setTitle(OLD_BOOK_TITLE);
 
-        BookResponseDto responseDto = new BookResponseDto();
-        responseDto.setTitle(requestDto.getTitle());
-        responseDto.setAuthor(requestDto.getAuthor());
-        responseDto.setIsbn(requestDto.getIsbn());
-        responseDto.setPrice(requestDto.getPrice());
-        responseDto.setDescription(requestDto.getDescription());
-        responseDto.setCoverImage(requestDto.getCoverImage());
+        BookResponseDto responseDto = getBookResponseDto(requestDto);
 
         Mockito.when(bookRepository.findById(bookId)).thenReturn(Optional.of(existingBook));
         Mockito.when(bookRepository.save(existingBook)).thenReturn(existingBook);
@@ -204,5 +192,16 @@ class BookServiceImplTest {
                 bookService.getBookByCategory(categoryId, pageable);
 
         assertEquals(1, results.size());
+    }
+
+    private BookResponseDto getBookResponseDto(CreateBookRequestDto requestDto) {
+        BookResponseDto responseDto = new BookResponseDto();
+        responseDto.setTitle(requestDto.getTitle());
+        responseDto.setAuthor(requestDto.getAuthor());
+        responseDto.setIsbn(requestDto.getIsbn());
+        responseDto.setPrice(requestDto.getPrice());
+        responseDto.setDescription(requestDto.getDescription());
+        responseDto.setCoverImage(requestDto.getCoverImage());
+        return responseDto;
     }
 }

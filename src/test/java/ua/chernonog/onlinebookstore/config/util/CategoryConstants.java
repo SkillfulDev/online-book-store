@@ -16,5 +16,7 @@ public class CategoryConstants {
     public static final String OLD_CATEGORY_NAME = "Old Category";
     public static final String OLD_CATEGORY_DESCRIPTION = "Old Description";
 
+    public static final String NAME_JSON_PATH = "$.name";
+
     public static final long CATEGORY_ID = 1L;
 }

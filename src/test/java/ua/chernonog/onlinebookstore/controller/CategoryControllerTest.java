@@ -15,7 +15,9 @@ import static ua.chernonog.onlinebookstore.config.util.CategoryConstants.BOOKS_B
 import static ua.chernonog.onlinebookstore.config.util.CategoryConstants.CATEGORIES_BASE_URL;
 import static ua.chernonog.onlinebookstore.config.util.CategoryConstants.CATEGORY_BY_ID_URL;
 import static ua.chernonog.onlinebookstore.config.util.CategoryConstants.CATEGORY_DESCRIPTION;
+import static ua.chernonog.onlinebookstore.config.util.CategoryConstants.CATEGORY_ID;
 import static ua.chernonog.onlinebookstore.config.util.CategoryConstants.CATEGORY_NAME;
+import static ua.chernonog.onlinebookstore.config.util.CategoryConstants.NAME_JSON_PATH;
 import static ua.chernonog.onlinebookstore.config.util.UtilConstants.JSON_PATH_FIRST_ITEM_EXISTS;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -62,7 +64,7 @@ class CategoryControllerTest {
         createCategoryDto.setDescription(CATEGORY_DESCRIPTION);
 
         CategoryResponseDto responseDto = new CategoryResponseDto();
-        responseDto.setId(1L);
+        responseDto.setId(CATEGORY_ID);
         responseDto.setName(createCategoryDto.getName());
         responseDto.setDescription(createCategoryDto.getDescription());
 
@@ -73,7 +75,7 @@ class CategoryControllerTest {
                         .content(objectMapper.writeValueAsString(createCategoryDto))
                         .with(csrf()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Science Fiction"));
+                .andExpect(jsonPath(NAME_JSON_PATH).value(CATEGORY_NAME));
     }
 
     @Test
@@ -92,10 +94,11 @@ class CategoryControllerTest {
     @WithMockUser(roles = "ADMIN")
     @DisplayName("Delete a category by admin")
     void deleteCategory_WithValidId_ShouldReturnOkStatus() throws Exception {
-        Long categoryId = 1L;
+        Long categoryId = CATEGORY_ID;
         doNothing().when(categoryService).deleteById(categoryId);
 
-        mockMvc.perform(delete(CATEGORY_BY_ID_URL, categoryId).with(csrf()))
+        mockMvc.perform(delete(CATEGORY_BY_ID_URL,
+                        categoryId).with(csrf()))
                 .andExpect(status().isOk());
     }
 
@@ -104,7 +107,8 @@ class CategoryControllerTest {
     @DisplayName("Get books by category")
     void getBooksByCategory_WithValidCategoryId_ShouldReturnBooks() throws Exception {
         List<BookDtoWithoutCategoryIds> books = List.of(new BookDtoWithoutCategoryIds());
-        when(categoryService.getBookByCategory(eq(1L), any())).thenReturn(books);
+        when(categoryService.getBookByCategory(eq(CATEGORY_ID),
+                any())).thenReturn(books);
 
         mockMvc.perform(get(BOOKS_BY_CATEGORY_URL, 1))
                 .andExpect(status().isOk())

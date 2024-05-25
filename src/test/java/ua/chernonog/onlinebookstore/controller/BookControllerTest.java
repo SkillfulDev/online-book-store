@@ -19,6 +19,8 @@ import static ua.chernonog.onlinebookstore.config.util.BookConstants.ISBN;
 import static ua.chernonog.onlinebookstore.config.util.BookConstants.JSON_PATH_FIRST_ITEM_EXISTS;
 import static ua.chernonog.onlinebookstore.config.util.BookConstants.PRICE;
 import static ua.chernonog.onlinebookstore.config.util.BookConstants.TITLE;
+import static ua.chernonog.onlinebookstore.config.util.BookConstants.TITLE_JSON_PATH;
+import static ua.chernonog.onlinebookstore.config.util.BookConstants.VALID_BOOK_ID;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
@@ -75,7 +77,7 @@ class BookControllerTest {
         BookSearchParametersDto searchParameters = new BookSearchParametersDto();
 
         when(bookService.search(any(
-                BookSearchParametersDto.class),
+                        BookSearchParametersDto.class),
                 any(Pageable.class))).thenReturn(books);
 
         String searchJson = objectMapper.writeValueAsString(searchParameters);
@@ -100,7 +102,7 @@ class BookControllerTest {
         bookDto.setCoverImage(COVER_IMAGE_URL);
 
         BookResponseDto responseDto = new BookResponseDto();
-        responseDto.setId(1L);
+        responseDto.setId(VALID_BOOK_ID);
         responseDto.setTitle(bookDto.getTitle());
         responseDto.setAuthor(bookDto.getAuthor());
         responseDto.setIsbn(bookDto.getIsbn());
@@ -110,14 +112,13 @@ class BookControllerTest {
 
         when(bookService.save(any(CreateBookRequestDto.class))).thenReturn(responseDto);
 
-        objectMapper = new ObjectMapper();
         String bookJson = objectMapper.writeValueAsString(bookDto);
 
         mockMvc.perform(post(BOOKS_BASE_URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(bookJson))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title").value(TITLE));
+                .andExpect(jsonPath(TITLE_JSON_PATH).value(TITLE));
     }
 
     @Test
@@ -132,7 +133,6 @@ class BookControllerTest {
         bookDto.setDescription(DESCRIPTION);
         bookDto.setCoverImage(COVER_IMAGE_URL);
 
-        objectMapper = new ObjectMapper();
         String bookJson = objectMapper.writeValueAsString(bookDto);
 
         mockMvc.perform(post(BOOKS_BASE_URL)
@@ -145,7 +145,7 @@ class BookControllerTest {
     @WithMockUser(roles = "ADMIN")
     @DisplayName("Test valid book deletion by an admin")
     void deleteBook_WithValidIdAndAdminRole_ShouldDeleteBook() throws Exception {
-        Long bookId = 1L;
+        Long bookId = VALID_BOOK_ID;
 
         doNothing().when(bookService).deleteById(bookId);
 
@@ -157,9 +157,9 @@ class BookControllerTest {
     @WithMockUser(roles = "USER")
     @DisplayName("Test book deletion fails for non-admin user")
     void deleteBook_WithUserRole_ShouldFail() throws Exception {
-        Long bookId = 1L;
+        Long bookId = VALID_BOOK_ID;
 
-        mockMvc.perform(delete("/books/{id}", bookId))
+        mockMvc.perform(delete(BOOKS_BASE_URL_WITH_PATH_ID, bookId))
                 .andExpect(status().isForbidden());
     }
 }
